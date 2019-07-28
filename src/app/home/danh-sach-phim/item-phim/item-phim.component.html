@@ -1,0 +1,9 @@
+<!--Begin item -->
+<div class="card">
+    <img class="card-img-top" [src]="phim.hinhAnh" alt="">
+    <div class="card-body">
+        <h4 class="card-title">{{phim.tenPhim}}</h4>
+        <p class="card-text">{{phim.gia}}</p>
+        <button routerLink="/chi-tiet-phim/{{phim.maPhim}}" class="btn btn-success">Chi tiết</button>
+    </div>
+</div>
