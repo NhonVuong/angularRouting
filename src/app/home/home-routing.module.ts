@@ -5,6 +5,9 @@ import { TrangChuComponent } from "./trang-chu/trang-chu.component";
 import { TinTucComponent } from "./tin-tuc/tin-tuc.component";
 import { ChiTietPhimComponent } from './chi-tiet-phim/chi-tiet-phim.component';
 import { ChiTietDatVeComponent } from './chi-tiet-dat-ve/chi-tiet-dat-ve.component';
+import { IsLoginGuard } from '../_core/Guards/is-login.guard';
+import { DangNhapComponent } from './dang-nhap/dang-nhap.component';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -36,7 +39,12 @@ const routes: Routes = [
       //Trang đặt vé xem phim
       {
         path: "chi-tiet-dat-ve/:maLichChieu",
-        component: ChiTietDatVeComponent
+        component: ChiTietDatVeComponent,
+        canActivate:[IsLoginGuard]
+      },
+      {
+        path: "dang-nhap",
+        component:DangNhapComponent
       }
     ]
   }

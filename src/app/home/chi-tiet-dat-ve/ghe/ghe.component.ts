@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { QuanLyPhimService } from 'src/app/_core/services/quan-ly-phim.service';
 
 @Component({
   selector: 'app-ghe',
@@ -8,10 +9,26 @@ import { Component, OnInit, Input } from '@angular/core';
 export class GheComponent implements OnInit {
 
   @Input() gheInput:any = {};
-  
-  constructor() { }
+  dangDat:boolean = false;
+  @Output() suKienDatGhe = new EventEmitter();
+
+  constructor(private qlyPhimService:QuanLyPhimService) { }
 
   ngOnInit() {
   }
+
+  datGhe(){
+    this.dangDat = !this.dangDat;
+    //dat ghe gui du lieu ghe dang dat len service
+   let gheDangDat:any={
+    maGhe:this.gheInput.maGhe,
+    stt:this.gheInput.stt,
+    giaVe:this.gheInput.giaVe,
+    dangDat:this.dangDat
+   }
+   //gui len thong qua phuong thuc datGhe() cua service
+    this.qlyPhimService.datGhe.emit(gheDangDat);
+  }
+
 
 }

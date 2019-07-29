@@ -32,7 +32,7 @@ export class ChiTietPhimComponent implements OnInit, OnDestroy {
     });
   }
 
-  layThongTinChiTietPhim(maPhim: number) {
+  layThongTinChiTietPhim(maPhim:number) {
     this.subService = this.quanLyPhimService
       .layChiTietPhim(maPhim)
       .subscribe(data => {

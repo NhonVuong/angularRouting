@@ -18,6 +18,8 @@ export class ChiTietDatVeComponent implements OnInit, OnDestroy {
   subPrams: Subscription;
   subService: Subscription;
   lichChieu: any = {};
+  danhSachGheDangDat:any[] = [];
+  tongTien:number = 0;
 
   ngOnDestroy() {
     this.subPrams.unsubscribe();
@@ -32,6 +34,31 @@ export class ChiTietDatVeComponent implements OnInit, OnDestroy {
       //goi service lay lich chieu phong ve
       this.layThongTinLichChieu(param.maLichChieu);
     });
+
+    // du lieu ghe dang dat duoc lay tu service
+    this.qlyPhimService.datGhe.subscribe((gheDangDat)=>{
+     // xu ly ghe dang dat tai ham subscribe tu output cua sẻvice
+     if(gheDangDat.dangDat){
+          this.danhSachGheDangDat.push(gheDangDat);
+        }else{
+          let index = this.danhSachGheDangDat.findIndex(ghe => ghe.maGhe === gheDangDat.maGhe)
+          if(index !== -1){
+            this.danhSachGheDangDat.splice(index, 1)
+          }
+        }
+        console.log('mang ghe dang dat', this.danhSachGheDangDat);
+        this.tinhTongTien();
+    })
+
+
+  }
+
+  tinhTongTien(){
+    let tongTien = 0;
+    this.danhSachGheDangDat.forEach((ghe, index)=>{
+      tongTien += ghe.giaVe;
+    });
+    this.tongTien = tongTien;
   }
 
   layThongTinLichChieu(maLichChieu) {
@@ -43,4 +70,6 @@ export class ChiTietDatVeComponent implements OnInit, OnDestroy {
         this.lichChieu = data;
       });
   }
+
+
 }

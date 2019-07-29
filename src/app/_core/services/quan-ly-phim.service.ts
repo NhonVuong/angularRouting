@@ -1,12 +1,39 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Injectable, Output, EventEmitter } from '@angular/core';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpClient } from "@angular/common/http";
-import { tap, catchError } from "rxjs/operators"
+import { tap, catchError } from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuanLyPhimService {
+
+  @Output() datGhe = new EventEmitter();
+  // public storeGheDangDat = new BehaviorSubject([]); //{} la gia tri ban dau mac dinh cua store
+  // danhSachGheDangDat = this.storeGheDangDat.asObservable();
+
+  // datGhe(thongTinGheDangDat:any){
+    // console.log('thong tin dat ghe', thongTinGheDangDat);
+    // let dsGheDangDat = [];
+
+    // //lay mang ghe dang dat trong store ra
+    // this.danhSachGheDangDat.toPromise().then((mangGheDangDat:any)=>{
+    //   dsGheDangDat = mangGheDangDat;
+    //   if(thongTinGheDangDat.dangDat){
+    //     dsGheDangDat.push(thongTinGheDangDat);
+    //   }else{
+    //     let index = dsGheDangDat.findIndex(ghe => ghe.maGhe === thongTinGheDangDat.maGhe)
+    //     if(index !== -1){
+    //       dsGheDangDat.splice(index, 1)
+    //     }
+    //   }
+    //   //cap nhat lai mang ghe trong store
+    //   this.storeGheDangDat.next(thongTinGheDangDat);
+    // })
+    //xu ly nghiep vu dat ghe => làm thay đổi du liệu danhSachGheDangDat tu store
+    
+    
+  // }
 
   constructor(private http:HttpClient) { 
 

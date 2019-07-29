@@ -2,10 +2,14 @@
     <div class="row">
         <div class="col-md-8">
             <!-- thong tin ghe -->
-            <app-ghe [gheInput]="ghe" *ngFor="let ghe of lichChieu.danhSachGhe"></app-ghe>
+            <app-ghe [gheInput]="ghe" *ngFor="let ghe of lichChieu.danhSachGhe; let i = index"></app-ghe>
+            <br *ngIf="(i+1)%16===0">
         </div>
         <div class="col-md-4">
             <!-- thong tin lich chieu cua phim -->
+            <p>Danh sách ghế đang đặt</p>
+            <span *ngFor="let gheDangDat of danhSachGheDangDat">{{gheDangDat.stt}}-</span>
+            <span>{{tongTien | number}}</span>
         </div>
     </div>
 </div>

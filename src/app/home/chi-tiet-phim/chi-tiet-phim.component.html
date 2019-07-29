@@ -10,11 +10,9 @@
             <table class="table mt-5">
                 <thead>
                     <th colspan="2">
-                        <span class="display-4">
-              {{ chiTietPhim.tenPhim }} </span
-            ><br />
+                        <span class="display-4"> {{ chiTietPhim.tenPhim }} </span><br />
 
-            <span>{{ chiTietPhim.moTa }}</span>
+                        <span>{{ chiTietPhim.moTa }}</span>
                     </th>
                 </thead>
 
@@ -41,48 +39,47 @@
                 <a [ngClass]="{ active: stt === 0 }" class="nav-link" data-toggle="tab" href="#{{ htr.maHeThongRap }}">{{ htr.tenHeThongRap }}</a
         >
       </li>
+    </ul>
 
-      <!-- <li class="nav-item">
-        
-        <a class="nav-link" data-toggle="tab" href="#menu1">Menu 1</a>
+    <!-- Tab panes -->
 
-            </li>
+    <div class="tab-content">
+      <div
+        *ngFor="let htr of chiTietPhim.heThongRapChieu; let stt = index"
+        [ngClass]="{ active: stt === 0 }"
+        class="tab-pane container"
+        id="{{ htr.maHeThongRap }}"
+      >
+        <!-- {{htr.tenHeThongRap}} -->
 
-            <li class="nav-item">
+        <!--load cụm rạp dựa trên hệ thống rạp-->
 
-                <a class="nav-link" data-toggle="tab" href="#menu2">Menu 2</a>
+        <div *ngFor="let cumRap of htr.cumRapChieu" class="card text-left">
+          <div class="card-body">
+            <h4 class="card-title">{{ cumRap.tenCumRap }}</h4>
 
-            </li> -->
-        </ul>
+            <p class="card-text">
+              <!--Load lịch chiếu trên từng cụm rạp-->
 
-        <!-- Tab panes -->
-
-        <div class="tab-content">
-            <div *ngFor="let htr of chiTietPhim.heThongRapChieu; let stt = index" [ngClass]="{ active: stt === 0 }" class="tab-pane container" id="{{ htr.maHeThongRap }}">
-                <!-- {{htr.tenHeThongRap}} -->
-
-                <!--load cụm rạp dựa trên hệ thống rạp-->
-
-                <div *ngFor="let cumRap of htr.cumRapChieu" class="card text-left">
-                    <div class="card-body">
-                        <h4 class="card-title">{{ cumRap.tenCumRap }}</h4>
-
-                        <p class="card-text">
-                            <!--Load lịch chiếu trên từng cụm rạp-->
-
-                            <ng-container *ngFor="let lichChieu of cumRap.lichChieuPhim; let i = index">
-                                <a routerLink="/chi-tiet-dat-ve/{{lichChieu.maLichChieu}}" *ngIf="i <= 6" class="text-success display-4">
+              <ng-container
+                *ngFor="let lichChieu of cumRap.lichChieuPhim; let i = index"
+              >
+                <a
+                  routerLink="/chi-tiet-dat-ve/{{ lichChieu.maLichChieu }}"
+                  *ngIf="i <= 6"
+                  class="text-success display-4"
+                >
                   {{ lichChieu.ngayChieuGioChieu | date: "hh:mm" }}
                 </a>
-                            </ng-container>
-                        </p>
-                    </div>
-                </div>
-            </div>
+                </ng-container>
+                </p>
+    </div>
+</div>
+</div>
 
-            <!-- <div class="tab-pane container fade" id="menu1">...</div>
+<!-- <div class="tab-pane container fade" id="menu1">...</div>
         
         <div class="tab-pane container fade" id="menu2">...</div> -->
-        </div>
-    </div>
+</div>
+</div>
 </div>

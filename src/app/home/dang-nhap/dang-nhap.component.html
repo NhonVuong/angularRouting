@@ -1,0 +1,15 @@
+<div class="container">
+    <form action="" #formLogin="ngForm" (ngSubmit)="dangNhap(formLogin.value)">
+        <div class="form-group">
+            <span>Tai khoan</span>
+            <input type="text" class="form-control" name="taiKhoan" ngModel>
+        </div>
+        <div class="form-group">
+            <span>Mat khau</span>
+            <input type="password" class="form-control" name="matKhau" ngModel>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success">Dang nhap</button>
+        </div>
+    </form>
+</div>
